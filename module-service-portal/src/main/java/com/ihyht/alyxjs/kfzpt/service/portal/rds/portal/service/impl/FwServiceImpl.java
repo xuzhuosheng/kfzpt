@@ -6,6 +6,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.*;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.*;
@@ -64,8 +66,8 @@ public class FwServiceImpl implements FwService {
 				if("fwmc".equals(entry.getKey())){ criteria.andFwmcLike("%"+entry.getValue()+"%"); continue; }
 				if("fwms".equals(entry.getKey())){ criteria.andFwmsLike("%"+entry.getValue()+"%"); continue; }
 				if("fwflId".equals(entry.getKey())){ criteria.andFwflIdLike("%"+entry.getValue()+"%"); continue; }
-				if("lrrq".equals(entry.getKey())){ criteria.andLrrqEqualTo((java.util.Date)entry.getValue()); continue; }
-				if("xgrq".equals(entry.getKey())){ criteria.andXgrqEqualTo((java.util.Date)entry.getValue()); continue; }
+				if("lrrq".equals(entry.getKey())){ criteria.andLrrqEqualTo(new Date((Long)entry.getValue())); continue; }
+				if("xgrq".equals(entry.getKey())){ criteria.andXgrqEqualTo(new Date((Long)entry.getValue())); continue; }
 				if("yxbz".equals(entry.getKey())){ criteria.andYxbzLike("%"+entry.getValue()+"%"); continue; }
 				if("scbz".equals(entry.getKey())){ criteria.andScbzLike("%"+entry.getValue()+"%"); continue; }
 				if("iconId".equals(entry.getKey())){ criteria.andIconIdLike("%"+entry.getValue()+"%"); continue; }
