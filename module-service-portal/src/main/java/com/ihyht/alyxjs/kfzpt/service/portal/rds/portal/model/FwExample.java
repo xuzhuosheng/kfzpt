@@ -1040,6 +1040,66 @@ public class FwExample {
             addCriterion("PCH not between", value1, value2, "pch");
             return (Criteria) this;
         }
+
+        public Criteria andZssxIsNull() {
+            addCriterion("zssx is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxIsNotNull() {
+            addCriterion("zssx is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxEqualTo(Integer value) {
+            addCriterion("zssx =", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxNotEqualTo(Integer value) {
+            addCriterion("zssx <>", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxGreaterThan(Integer value) {
+            addCriterion("zssx >", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxGreaterThanOrEqualTo(Integer value) {
+            addCriterion("zssx >=", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxLessThan(Integer value) {
+            addCriterion("zssx <", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxLessThanOrEqualTo(Integer value) {
+            addCriterion("zssx <=", value, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxIn(List<Integer> values) {
+            addCriterion("zssx in", values, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxNotIn(List<Integer> values) {
+            addCriterion("zssx not in", values, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxBetween(Integer value1, Integer value2) {
+            addCriterion("zssx between", value1, value2, "zssx");
+            return (Criteria) this;
+        }
+
+        public Criteria andZssxNotBetween(Integer value1, Integer value2) {
+            addCriterion("zssx not between", value1, value2, "zssx");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

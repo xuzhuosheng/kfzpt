@@ -26,7 +26,7 @@
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
-            <property name="rootClass" value="com.ihyht.basic.platform.core.utils.IdEntity"/>
+            <property name="rootClass" value="com.ihyht.alyxjs.nbjcpt.component.generator.IdEntity"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
         <sqlMapGenerator targetPackage="mapper/rds" targetProject="src/main/resources">

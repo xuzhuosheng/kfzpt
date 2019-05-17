@@ -1,6 +1,6 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model;
 
-import com.ihyht.basic.platform.core.utils.IdEntity;
+import com.ihyht.alyxjs.nbjcpt.component.generator.IdEntity;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -95,6 +95,13 @@ public class Fw extends IdEntity implements Serializable {
      * 对应字段 : PCH
      */
     private String pch;
+
+    /**
+     * 展示顺序（前台用）
+     * 表 : t_alyzcfw_fw
+     * 对应字段 : zssx
+     */
+    private Integer zssx;
 
     private static final long serialVersionUID = 1L;
 
@@ -330,5 +337,23 @@ public class Fw extends IdEntity implements Serializable {
      */
     public void setPch(String pch) {
         this.pch = pch == null ? null : pch.trim();
+    }
+
+    /**
+     * get method 
+     *
+     * @return t_alyzcfw_fw.zssx：展示顺序（前台用）
+     */
+    public Integer getZssx() {
+        return zssx;
+    }
+
+    /**
+     * set method 
+     *
+     * @param zssx  展示顺序（前台用）
+     */
+    public void setZssx(Integer zssx) {
+        this.zssx = zssx;
     }
 }

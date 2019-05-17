@@ -1,7 +1,7 @@
 package com.ihyht.alyxjs.kfzpt.portal.console;
 
 import com.github.pagehelper.PageInfo;
-import com.ihyht.basic.platform.core.exceptions.ApiReturnCodeEnum;
+import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
 import com.ihyht.commons.lang.model.RestResponse;
 import com.ihyht.alyxjs.kfzpt.portal.base.AbstractRestController;
 import io.swagger.annotations.Api;
