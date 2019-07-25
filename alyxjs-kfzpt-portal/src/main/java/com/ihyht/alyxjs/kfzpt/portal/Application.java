@@ -4,6 +4,7 @@ import com.ihyht.alyxjs.kfzpt.service.portal.PortalServiceConfig;
 import com.ihyht.alyxjs.nbjcpt.component.auth2.Oauth2Config;
 import com.ihyht.alyxjs.nbjcpt.component.dao.mybatis.DaoMybatisConfig;
 import com.ihyht.alyxjs.nbjcpt.component.swagger.SwaggerConfig;
+import com.ihyht.alyxjs.wfw.component.cache.redis.FrameworkCacheConfig;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,6 +30,7 @@ import java.util.Date;
         ,Oauth2Config.class
         ,PortalServiceConfig.class
         ,DaoMybatisConfig.class
+        ,FrameworkCacheConfig.class
 //        , ApplicationServiceConfig.class
 })
 public class Application {

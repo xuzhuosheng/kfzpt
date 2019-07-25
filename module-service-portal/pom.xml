@@ -51,7 +51,10 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.ihyht.alyxjs.wfw</groupId>
+            <artifactId>component-cache-redis</artifactId>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>javax.servlet</groupId>-->
             <!--<artifactId>javax.servlet-api</artifactId>-->
