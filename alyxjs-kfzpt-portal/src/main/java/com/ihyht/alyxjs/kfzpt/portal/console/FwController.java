@@ -1,18 +1,17 @@
 package com.ihyht.alyxjs.kfzpt.portal.console;
 
 import com.github.pagehelper.PageInfo;
+import com.ihyht.alyxjs.kfzpt.portal.base.AbstractRestController;
+import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.Fw;
+import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.FwService;
 import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
 import com.ihyht.commons.lang.model.RestResponse;
-import com.ihyht.alyxjs.kfzpt.portal.base.AbstractRestController;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
-import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.*;
-import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.*;
-import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.*;
+import java.util.List;
 
 /**
 * Created by lilingfeng on 2017/9/8.
