@@ -1,6 +1,7 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service;
 
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh;
+import com.ihyht.alyxjs.nbjcpt.common.api.PageInfo;
 
 import java.util.List;
 
@@ -13,15 +14,17 @@ import java.util.List;
 public interface QysswjXxzxTYwLxwhService {
 
 
-    List<QysswjXxzxTYwLxwh> getLxwhList(String searchContent, int pageNum, int pageSize);
+    List<QysswjXxzxTYwLxwh> getLxwhList(QysswjXxzxTYwLxwh lxwh, int pageNum, int pageSize);
 
-    void addLxwh(String lxmc);
+    boolean addLxwh(String lxmc);
 
-    void editLxwh(String id, String lxmc);
+    boolean editLxwh(String id, String lxmc);
 
-    void editLxwhZt(List<String> idList);
+    boolean editLxwhZt(List<String> idList);
 
     QysswjXxzxTYwLxwh getLxwhById(String id);
 
     List<QysswjXxzxTYwLxwh> getAllLxwhList();
+
+//    PageInfo selectLxwhByExample(QysswjXxzxTYwLxwh lxwh, int pageNum, int pageSize);
 }

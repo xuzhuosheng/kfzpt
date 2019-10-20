@@ -4,6 +4,7 @@ import com.ihyht.alyxjs.kfzpt.portal.base.AbstractRestController;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwLxwhService;
 import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
+import com.ihyht.alyxjs.nbjcpt.common.api.PageInfo;
 import com.ihyht.commons.lang.model.RestResponse;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,16 +49,40 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getLxwhList", method = RequestMethod.POST)
     @ResponseBody
-    public List<QysswjXxzxTYwLxwh> getLxwhList(@RequestParam (required = false) String searchContent,
-                                               @RequestParam (required = true) int pageNum) {
-        lxwhList = new ArrayList<>();
-        try {
-            lxwhList = qysswjXxzxTYwLxwhService.getLxwhList(searchContent, pageNum, pageSize);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public RestResponse getLxwhList(@ModelAttribute QysswjXxzxTYwLxwh lxwh,
+                                    @RequestParam (required = true) int pageNum) {
+        lxwhList = qysswjXxzxTYwLxwhService.getLxwhList(lxwh, pageNum, pageSize);
+
+        if (lxwhList != null) {
+            return RestResponse.success(lxwhList);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return lxwhList;
+
     }
+
+
+//    @ApiOperation (value = "分页带条件查询")
+//    @ApiImplicitParams ({
+////            @ApiImplicitParam (name = "searchContent", value = "搜索内容", paramType = "query", required = false),
+//            @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
+//    })
+//    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+//    @RequestMapping (value = "/getLxwhList", method = RequestMethod.POST)
+//    @ResponseBody
+//    public RestResponse getLxwhList(/*@RequestParam (required = false) String searchContent,*/
+//                                    @RequestParam (required = true) int pageNum,
+//                                    @ModelAttribute QysswjXxzxTYwLxwh lxwh) {
+//
+//        PageInfo p = qysswjXxzxTYwLxwhService.selectLxwhByExample(lxwh, pageNum, pageSize);
+//        lxwhList = new ArrayList<>();
+//        if (p != null) {
+//            return RestResponse.success(p);
+//        } else {
+//            return RestResponse.failed(ApiReturnCodeEnum.queryFail);
+//        }
+//    }
+
 
     @ApiOperation (value = "根据id获取类型", notes = "返回QysswjXxzxTYwLxwh对象")
     @ApiImplicitParams ({
@@ -66,15 +91,13 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
     @ResponseBody
-    public QysswjXxzxTYwLxwh getLxwhById(@RequestParam (required = true) String id) {
-        QysswjXxzxTYwLxwh ywLxwh = new QysswjXxzxTYwLxwh();
-        try {
-            ywLxwh = qysswjXxzxTYwLxwhService.getLxwhById(id);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    public RestResponse getLxwhById(@RequestParam (required = true) String id) {
+        QysswjXxzxTYwLxwh ywLxwh = qysswjXxzxTYwLxwhService.getLxwhById(id);
+        if (ywLxwh != null) {
+            return RestResponse.success(ywLxwh);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return ywLxwh;
     }
 
 
@@ -84,14 +107,7 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @RequestMapping (value = "/addLxwh", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse addLxwh(@RequestParam (required = false) String lxmc) {
-        boolean flag = true;
-        try {
-            qysswjXxzxTYwLxwhService.addLxwh(lxmc);
-        } catch (Exception e) {
-            flag = false;
-            e.printStackTrace();
-        }
-
+        boolean flag = qysswjXxzxTYwLxwhService.addLxwh(lxmc);
         if (flag) {
             return RestResponse.success(flag);
         } else {
@@ -111,15 +127,14 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/editLxwh", method = RequestMethod.POST)
     @ResponseBody
-    public String editLxwh(@RequestParam (required = false) String lxmc, @RequestParam (required = false) String id) {
-        String resultStr = "success";
-        try {
-            qysswjXxzxTYwLxwhService.editLxwh(id, lxmc);
-        } catch (Exception e) {
-            resultStr = "error";
-            e.printStackTrace();
+    public RestResponse editLxwh(@RequestParam (required = false) String lxmc,
+                                 @RequestParam (required = false) String id) {
+        boolean flag = qysswjXxzxTYwLxwhService.editLxwh(id, lxmc);
+        if (flag) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return resultStr;
     }
 
     @ApiOperation (value = "单个删除和批量删除", notes = "实际上是更新状态。返回字符串，成功返回success，失败返回error")
@@ -132,32 +147,37 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/editLxwhZt", method = RequestMethod.POST)
     @ResponseBody
-    public String editLxwhZt(@RequestParam (required = true) String ids) {
-        String resultStr = "success";
-        try {
+    public RestResponse editLxwhZt(@RequestParam (required = true) String ids) {
+        List<String> idList = new ArrayList<>();
+        if (!"".equals(ids)) {
             String idArr[] = ids.split(",");
-            List<String> idList = Arrays.asList(idArr);
-            qysswjXxzxTYwLxwhService.editLxwhZt(idList);
-        } catch (Exception e) {
-            resultStr = "error";
-            e.printStackTrace();
+            idList = Arrays.asList(idArr);
         }
-        return resultStr;
+
+        boolean flag = true;
+        if (idList != null && idList.size() > 0) {
+            flag = qysswjXxzxTYwLxwhService.editLxwhZt(idList);
+        }
+        if (flag) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+        }
+
     }
 
 
-    @ApiOperation (value = "获取所有在用类型 ", notes = "返回List ")
+    @ApiOperation (value = "获取所有在用类型 ", notes = "用作下拉列表 ")
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getAllLxwhList", method = RequestMethod.POST)
     @ResponseBody
-    public List<QysswjXxzxTYwLxwh> getAllLxwhList() {
-        lxwhList = new ArrayList<>();
-        try {
-            lxwhList = qysswjXxzxTYwLxwhService.getAllLxwhList();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public RestResponse getAllLxwhList() {
+        List<QysswjXxzxTYwLxwh> lxwhList = qysswjXxzxTYwLxwhService.getAllLxwhList();
+        if (lxwhList != null) {
+            return RestResponse.success(lxwhList);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return lxwhList;
     }
 
 

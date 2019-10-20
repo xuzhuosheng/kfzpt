@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api (value = "Test", description = "Test")
-@RestController
-@RequestMapping ("/Te")
+//@Api (value = "Test", description = "Test")
+//@RestController
+//@RequestMapping ("/Te")
 public class TXtTestController {
 
     @Autowired

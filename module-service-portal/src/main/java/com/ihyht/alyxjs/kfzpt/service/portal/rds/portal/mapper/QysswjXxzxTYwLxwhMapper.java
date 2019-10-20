@@ -16,10 +16,10 @@ import java.util.List;
 public interface QysswjXxzxTYwLxwhMapper {
 
 
-    List<QysswjXxzxTYwLxwh> selectAllLxwh(@Param ("searchContent") String searchContent,
-                                          @Param ("pageNum") int pageNum,
-                                          @Param ("pageSize") int pageSize
-    );
+//    List<QysswjXxzxTYwLxwh> selectAllLxwh2(@Param ("lxwh") QysswjXxzxTYwLxwh lxwh,
+//                                           @Param ("pageNum") int pageNum,
+//                                           @Param ("pageSize") int pageSize
+//    );
 
     void insertLxwh(@Param ("lxmc") String lxmc);
 
@@ -35,4 +35,7 @@ public interface QysswjXxzxTYwLxwhMapper {
      * @return
      */
     List<QysswjXxzxTYwLxwh> selectAllZyLxwh();
+
+    List<QysswjXxzxTYwLxwh> selectAllLxwh(@Param ("lxwh") QysswjXxzxTYwLxwh lxwh,
+                                          @Param ("pageNum") int pageNum, @Param ("pageSize") int pageSize);
 }

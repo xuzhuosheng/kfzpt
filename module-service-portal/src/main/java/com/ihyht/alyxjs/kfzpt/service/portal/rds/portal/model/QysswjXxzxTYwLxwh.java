@@ -11,7 +11,7 @@ import java.util.Date;
  * @author makejava
  * @since 2019-09-21 09:59:21
  */
-public class QysswjXxzxTYwLxwh extends IdEntity implements Serializable {
+public class QysswjXxzxTYwLxwh   implements Serializable {
     private static final long serialVersionUID = 808275939804286963L;
     // 主键ID
     private Integer id;
@@ -25,9 +25,9 @@ public class QysswjXxzxTYwLxwh extends IdEntity implements Serializable {
     private String bz;
 
 
-//    public Integer getId() {
-//        return id;
-//    }
+    public Integer getId() {
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;

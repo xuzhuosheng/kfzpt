@@ -20,7 +20,7 @@
     <result column="PCH" jdbcType="VARCHAR" property="pch" />
     <result column="zssx" jdbcType="INTEGER" property="zssx" />
   </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Example_Where_Clause">selectByExample
     <!--
       @MBG Generated
     -->
@@ -88,7 +88,7 @@
     <!--
       @MBG Generated
     -->
-    ID, FWMC, FWMS, FWFL_ID, LRRQ, XGRQ, YXBZ, SCBZ, ICON_ID, URL, XH, API_URL, PCH, 
+    ID, FWMC, FWMS, FWFL_ID, LRRQ, XGRQ, YXBZ, SCBZ, ICON_ID, URL, XH, API_URL, PCH,
     zssx
   </sql>
   <select id="selectByExample" parameterType="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.FwExample" resultMap="BaseResultMap">
@@ -120,7 +120,7 @@
     <!--
       @MBG Generated
     -->
-    select 
+    select
     <include refid="Base_Column_List" />
     from t_alyzcfw_fw
     where ID = #{id,jdbcType=VARCHAR}
@@ -148,14 +148,14 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
        select replace(uuid(),'-','')
     </selectKey>
-    insert into t_alyzcfw_fw (ID, FWMC, FWMS, 
-      FWFL_ID, LRRQ, XGRQ, 
-      YXBZ, SCBZ, ICON_ID, URL, 
+    insert into t_alyzcfw_fw (ID, FWMC, FWMS,
+      FWFL_ID, LRRQ, XGRQ,
+      YXBZ, SCBZ, ICON_ID, URL,
       XH, API_URL, PCH, zssx
       )
-    values (#{id,jdbcType=VARCHAR}, #{fwmc,jdbcType=VARCHAR}, #{fwms,jdbcType=VARCHAR}, 
-      #{fwflId,jdbcType=VARCHAR}, #{lrrq,jdbcType=TIMESTAMP}, #{xgrq,jdbcType=TIMESTAMP}, 
-      #{yxbz,jdbcType=CHAR}, #{scbz,jdbcType=CHAR}, #{iconId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{fwmc,jdbcType=VARCHAR}, #{fwms,jdbcType=VARCHAR},
+      #{fwflId,jdbcType=VARCHAR}, #{lrrq,jdbcType=TIMESTAMP}, #{xgrq,jdbcType=TIMESTAMP},
+      #{yxbz,jdbcType=CHAR}, #{scbz,jdbcType=CHAR}, #{iconId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR},
       #{xh,jdbcType=DECIMAL}, #{apiUrl,jdbcType=VARCHAR}, #{pch,jdbcType=VARCHAR}, #{zssx,jdbcType=INTEGER}
       )
   </insert>

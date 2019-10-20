@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwLxwhMapper">
 
-    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh" id="QysswjXxzxTYwLxwhMap">
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh"
+               id="QysswjXxzxTYwLxwhMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
         <result property="createtime" column="createtime" jdbcType="OTHER"/>
@@ -10,15 +11,15 @@
         <result property="bz" column="bz" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <!--查询记录-->
+
     <select id="selectAllLxwh" resultMap="QysswjXxzxTYwLxwhMap">
         select
         id, lxmc, createtime, zt, bz
-        from  qysswj_xxzx_t_yw_lxwh
+        from qysswj_xxzx_t_yw_lxwh
         <where>
             zt = '1'
-            <if test="searchContent!=null and searchContent!='' ">
-                and lxmc like '%${searchContent}%'
+            <if test="lxwh.lxmc!=null and lxwh.lxmc!='' ">
+                and lxmc like '%${lxwh.lxmc}%'
             </if>
         </where>
         order by createtime desc
@@ -27,6 +28,23 @@
         </if>
 
     </select>
+    <!--&lt;!&ndash;查询记录&ndash;&gt;-->
+    <!--<select id="selectAllLxwh2" resultMap="QysswjXxzxTYwLxwhMap">-->
+        <!--select-->
+        <!--id, lxmc, createtime, zt, bz-->
+        <!--from qysswj_xxzx_t_yw_lxwh-->
+        <!--<where>-->
+            <!--zt = '1'-->
+            <!--<if test="lxwh.lxmc!=null and lxwh.lxmc!='' ">-->
+                <!--and lxmc like '%${lxwh.lxmc}%'-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--order by createtime desc-->
+        <!--<if test="pageNum>0">-->
+            <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+
+    <!--</select>-->
 
     <!--查询单个-->
     <select id="selectOneById" resultMap="QysswjXxzxTYwLxwhMap">
@@ -36,7 +54,6 @@
         <where>
             1=1
             and zt='1'
-
             <if test="id!=null and id!=''">
                 and id=#{id}
             </if>

@@ -75,7 +75,7 @@ public class FwServiceImpl implements FwService {
 				if("xh".equals(entry.getKey())){ criteria.andXhEqualTo((java.lang.Long)entry.getValue()); continue; }
 				if("apiUrl".equals(entry.getKey())){ criteria.andApiUrlLike("%"+entry.getValue()+"%"); continue; }
 				if("pch".equals(entry.getKey())){ criteria.andPchLike("%"+entry.getValue()+"%"); continue; }
-				
+
             }
         }
 
