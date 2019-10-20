@@ -15,13 +15,13 @@ public interface QysswjXxzxTYwXhwhService {
 
     List<QysswjXxzxTYwXhwh> getXhwhList(String lxid, String ppid, String xhmc, int pageNum, int pageSize);
 
-    void addXhwh(String ppid, String ppmc, String xhmc);
+    boolean addXhwh(String ppid, String ppmc, String xhmc);
 
     QysswjXxzxTYwXhwh getXhwhById(String id);
 
-    void editXhwh(String ppid, String ppmc, String xhmc, String id);
+    boolean editXhwh(String ppid, String ppmc, String xhmc, String id);
 
-    void editXhwhZt(List<String> idList);
+    boolean editXhwhZt(List<String> idList);
 
     List<QysswjXxzxTYwXhwh> getXhwhListByPpid(String ppid);
 }

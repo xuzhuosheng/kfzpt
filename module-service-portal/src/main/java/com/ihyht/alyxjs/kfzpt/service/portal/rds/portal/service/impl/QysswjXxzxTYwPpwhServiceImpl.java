@@ -6,6 +6,7 @@ import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwPpw
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2019-09-21 10:01:41
  */
-@Service ("qysswjXxzxTYwPpwhService")
+@Service("qysswjXxzxTYwPpwhService")
 public class QysswjXxzxTYwPpwhServiceImpl implements QysswjXxzxTYwPpwhService {
     @Resource
     private QysswjXxzxTYwPpwhMapper qysswjXxzxTYwPpwhDao;
@@ -23,42 +24,75 @@ public class QysswjXxzxTYwPpwhServiceImpl implements QysswjXxzxTYwPpwhService {
 
     @Override
     public List<QysswjXxzxTYwPpwh> getPpwhList(String lxid, String ppmc, int pageNum, int pageSize) {
-        ppwhList = qysswjXxzxTYwPpwhDao.selectAllPpwh(lxid, ppmc, pageNum, pageSize);
+        ppwhList = new ArrayList<>();
+        try {
+
+            ppwhList = qysswjXxzxTYwPpwhDao.selectAllPpwh(lxid, ppmc, pageNum, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ppwhList;
     }
 
     @Override
-    public void addPpwh(String lxid, String lxmc, String ppmc) {
-        qysswjXxzxTYwPpwhDao.insertPpwh(lxid, lxmc, ppmc);
+    public boolean addPpwh(String lxid, String lxmc, String ppmc) {
+        boolean flag = true;
+        try {
+
+            qysswjXxzxTYwPpwhDao.insertPpwh(lxid, lxmc, ppmc);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
-    public void editPpwh(String id, String ppmc, String lxid, String lxmc) {
-        qysswjXxzxTYwPpwhDao.updatePpwh(id, ppmc, lxid, lxmc);
+    public boolean editPpwh(String id, String ppmc, String lxid, String lxmc) {
+        boolean flag = true;
+        try {
+
+            qysswjXxzxTYwPpwhDao.updatePpwh(id, ppmc, lxid, lxmc);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
-    public void editPpwhZt(List<String> idList) {
-        qysswjXxzxTYwPpwhDao.updatePpwhZt(idList);
+    public boolean editPpwhZt(List<String> idList) {
+        boolean flag = true;
+        try {
+            qysswjXxzxTYwPpwhDao.updatePpwhZt(idList);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
     public QysswjXxzxTYwPpwh getPpwhById(String id) {
         QysswjXxzxTYwPpwh qysswjXxzxTYwPpwh = new QysswjXxzxTYwPpwh();
-        qysswjXxzxTYwPpwh = qysswjXxzxTYwPpwhDao.selectOneById(id);
+        try {
+            qysswjXxzxTYwPpwh = qysswjXxzxTYwPpwhDao.selectOneById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return qysswjXxzxTYwPpwh;
     }
 
     @Override
     public List<QysswjXxzxTYwPpwh> getPpwhListByLxid(String lxid) {
-        ppwhList = qysswjXxzxTYwPpwhDao.selectAllPpwhByLxid(lxid);
+        try {
+            ppwhList = new ArrayList<>();
+            ppwhList = qysswjXxzxTYwPpwhDao.selectAllPpwhByLxid(lxid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ppwhList;
     }
 
-//    @Override
-//    public int addPpwh(String ppmc) {
-//
-//        int id = qysswjXxzxTYwPpwhDao.insertPpwh(ppmc);
-//        return id;
-//    }
+
 }

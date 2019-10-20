@@ -41,17 +41,18 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     private int pageSize;
 
 
-    @ApiOperation (value = "获取所有在用类型，并且分页.页面显示数据", notes = "1.返回List。2.页码大于0,整数,分页")
+    @ApiOperation (value = "获取所有在用类型，并且分页.页面显示数据" )
     @ApiImplicitParams ({
-            @ApiImplicitParam (name = "searchContent", value = "搜索内容", paramType = "query", required = false),
+            @ApiImplicitParam (name = "lxmc", value = "类型名称", paramType = "query", required = false),
             @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
     })
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getLxwhList", method = RequestMethod.POST)
     @ResponseBody
-    public RestResponse getLxwhList(@ModelAttribute QysswjXxzxTYwLxwh lxwh,
+    public RestResponse getLxwhList(@RequestParam(required = false) String lxmc,
                                     @RequestParam (required = true) int pageNum) {
-        lxwhList = qysswjXxzxTYwLxwhService.getLxwhList(lxwh, pageNum, pageSize);
+        lxwhList=new ArrayList<>();
+        lxwhList = qysswjXxzxTYwLxwhService.getLxwhList(lxmc, pageNum, pageSize);
 
         if (lxwhList != null) {
             return RestResponse.success(lxwhList);
@@ -61,27 +62,6 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
 
     }
 
-
-//    @ApiOperation (value = "分页带条件查询")
-//    @ApiImplicitParams ({
-////            @ApiImplicitParam (name = "searchContent", value = "搜索内容", paramType = "query", required = false),
-//            @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
-//    })
-//    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-//    @RequestMapping (value = "/getLxwhList", method = RequestMethod.POST)
-//    @ResponseBody
-//    public RestResponse getLxwhList(/*@RequestParam (required = false) String searchContent,*/
-//                                    @RequestParam (required = true) int pageNum,
-//                                    @ModelAttribute QysswjXxzxTYwLxwh lxwh) {
-//
-//        PageInfo p = qysswjXxzxTYwLxwhService.selectLxwhByExample(lxwh, pageNum, pageSize);
-//        lxwhList = new ArrayList<>();
-//        if (p != null) {
-//            return RestResponse.success(p);
-//        } else {
-//            return RestResponse.failed(ApiReturnCodeEnum.queryFail);
-//        }
-//    }
 
 
     @ApiOperation (value = "根据id获取类型", notes = "返回QysswjXxzxTYwLxwh对象")
@@ -111,6 +91,7 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
         if (flag) {
             return RestResponse.success(flag);
         } else {
+
             return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
     }
@@ -172,7 +153,8 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @RequestMapping (value = "/getAllLxwhList", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse getAllLxwhList() {
-        List<QysswjXxzxTYwLxwh> lxwhList = qysswjXxzxTYwLxwhService.getAllLxwhList();
+        lxwhList=new ArrayList<>();
+        lxwhList = qysswjXxzxTYwLxwhService.getAllLxwhList();
         if (lxwhList != null) {
             return RestResponse.success(lxwhList);
         } else {

@@ -18,33 +18,17 @@
         from qysswj_xxzx_t_yw_lxwh
         <where>
             zt = '1'
-            <if test="lxwh.lxmc!=null and lxwh.lxmc!='' ">
-                and lxmc like '%${lxwh.lxmc}%'
+            <if test="lxmc!=null and lxmc!='' ">
+                and lxmc like '%${lxmc}%'
             </if>
         </where>
         order by createtime desc
-        <if test="pageNum>0">
-            limit ${(pageNum-1)*pageSize},${pageNum*pageSize}
-        </if>
-
-    </select>
-    <!--&lt;!&ndash;查询记录&ndash;&gt;-->
-    <!--<select id="selectAllLxwh2" resultMap="QysswjXxzxTYwLxwhMap">-->
-        <!--select-->
-        <!--id, lxmc, createtime, zt, bz-->
-        <!--from qysswj_xxzx_t_yw_lxwh-->
-        <!--<where>-->
-            <!--zt = '1'-->
-            <!--<if test="lxwh.lxmc!=null and lxwh.lxmc!='' ">-->
-                <!--and lxmc like '%${lxwh.lxmc}%'-->
-            <!--</if>-->
-        <!--</where>-->
-        <!--order by createtime desc-->
         <!--<if test="pageNum>0">-->
-            <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+          <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
         <!--</if>-->
 
-    <!--</select>-->
+    </select>
+
 
     <!--查询单个-->
     <select id="selectOneById" resultMap="QysswjXxzxTYwLxwhMap">

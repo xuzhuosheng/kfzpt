@@ -1,7 +1,5 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model;
 
-import com.ihyht.alyxjs.nbjcpt.component.generator.IdEntity;
-
 import java.io.Serializable;
 import java.util.Date;
 
