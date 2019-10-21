@@ -1,5 +1,9 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service;
 
+import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh;
+
+import java.util.List;
+
 /**
  * (QysswjXxzxTYwCgjh)表服务接口
  *
@@ -9,5 +13,7 @@ package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service;
 public interface QysswjXxzxTYwCgjhService {
 
 
+    List<QysswjXxzxTYwCgjh> getYwLbwhList(String cgjhmc, String qsrq, String zzrq, int pageNum, int pageSize);
 
+    boolean addCgjh(String cgjhmc);
 }

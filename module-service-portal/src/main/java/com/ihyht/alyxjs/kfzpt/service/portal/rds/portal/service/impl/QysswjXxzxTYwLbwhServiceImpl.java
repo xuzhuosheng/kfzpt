@@ -77,4 +77,15 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     }
 
 
+    @Override
+    public boolean editYwLbwh(String id, String xhid, String xhmc, String kcl, double ysdj) {
+        boolean flag = true;
+        try {
+            qysswjXxzxTYwLbwhDao.updateYwLbwh(id, xhid, xhmc, kcl, ysdj);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
+    }
 }

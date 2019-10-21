@@ -128,7 +128,7 @@ public class QysswjXxzxTYwLbwhController {
             @ApiImplicitParam (name = "id", value = "id", paramType = "query", required = true)
     })
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
+    @RequestMapping (value = "/getYwLbwhById", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse getYwLbwhById(@RequestParam (required = true) String id) {
         QysswjXxzxTYwLbwh ywLbwh = qysswjXxzxTYwLbwhService.getYwLbwhById(id);
@@ -140,18 +140,28 @@ public class QysswjXxzxTYwLbwhController {
         }
     }
 
-//    @ApiOperation (value = "修改后保存", notes = "修改后保存")
-//    @ApiImplicitParams ({
-//            @ApiImplicitParam (name = "id", value = "id", paramType = "query", required = true)
-//    })
-//    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
-//    @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
-//    @ResponseBody
-//    public RestResponse editYwLbwh(@RequestParam (required = true)String id,
-//                                   @RequestParam()String
-//                                   ) {
-//
-//    }
+    @ApiOperation (value = "修改后保存", notes = "修改后保存")
+    @ApiImplicitParams ({
+            @ApiImplicitParam (name = "id", value = "id", paramType = "query", required = true)
+    })
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse editYwLbwh(@RequestParam (required = true) String id,
+                                   @RequestParam (required = false) String xhid,
+                                   @RequestParam (required = false) String xhmc,
+                                   @RequestParam (required = false) String kcl,
+                                   @RequestParam (required = false) double ysdj
+    ) {
+
+        boolean flag = qysswjXxzxTYwLbwhService.editYwLbwh(id, xhid, xhmc, kcl, ysdj);
+        if (flag) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+        }
+
+    }
 
 
 }

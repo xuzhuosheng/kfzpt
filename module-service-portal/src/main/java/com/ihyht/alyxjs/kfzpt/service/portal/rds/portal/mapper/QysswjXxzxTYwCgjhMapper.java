@@ -1,5 +1,11 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper;
 
+import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Date;
+import java.util.List;
+
 /**
  * (QysswjXxzxTYwCgjh)表数据库访问层
  *
@@ -9,5 +15,9 @@ package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper;
 public interface QysswjXxzxTYwCgjhMapper {
 
 
+    List<QysswjXxzxTYwCgjh> queryYwLbwh(@Param ("cgjhmc") String cgjhmc, @Param ("qsrq") String qsrq,
+                                        @Param ("zzrq") String zzrq, @Param ("pageNum") int pageNum,
+                                        @Param ("pageSize") int pageSize);
 
+    void insertCgjh(@Param ("cgjhmc") String cgjhmc);
 }

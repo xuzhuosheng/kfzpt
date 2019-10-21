@@ -1,6 +1,7 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (QysswjXxzxTYwCgjh)实体类
@@ -15,7 +16,7 @@ public class QysswjXxzxTYwCgjh implements Serializable {
 
     private String cgjhmc;
 
-    private Object createtime;
+    private Date createtime;
 
     private String creater;
 
@@ -40,11 +41,11 @@ public class QysswjXxzxTYwCgjh implements Serializable {
         this.cgjhmc = cgjhmc;
     }
 
-    public Object getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Object createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 

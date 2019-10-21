@@ -2,21 +2,43 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.mapper.QysswjXxzxTYwCgjhMapper">
 
-    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh" id="QysswjXxzxTYwCgjhMap">
+    <resultMap type="com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwCgjh"
+               id="QysswjXxzxTYwCgjhMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="cgjhmc" column="cgjhmc" jdbcType="VARCHAR"/>
-        <result property="createtime" column="createtime" jdbcType="OTHER"/>
+        <result property="createtime" column="createtime" jdbcType="VARCHAR"  />
         <result property="creater" column="creater" jdbcType="VARCHAR"/>
         <result property="zt" column="zt" jdbcType="VARCHAR"/>
         <result property="bz" column="bz" jdbcType="VARCHAR"/>
     </resultMap>
 
+
+    <!--String cgjhmc, Date qsrq, Date zzrq, int pageNum, int pageSize-->
     <!--查询单个-->
-    <select id="queryById" resultMap="QysswjXxzxTYwCgjhMap">
+    <select id="queryYwLbwh" resultMap="QysswjXxzxTYwCgjhMap" parameterType="String">
         select
-          id, cgjhmc, createtime, creater, zt, bz
-        from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjh
-        where id = #{id}
+        id, cgjhmc, createtime, creater, zt, bz
+        from qysswj_xxzx_t_yw_cgjh
+        <where>
+            1=1
+            <if test="cgjhmc!=null and cgjhmc!=''">
+                and cgjhmc like '%${cgjhmc}%'
+            </if>
+            <if test="qsrq!=null ">
+                and createtime &gt;= #{qsrq}
+                /* to_date(#{qsrq},'yyyy-MM-dd HH:mm:ss')*/
+
+            </if>
+            <if test="zzrq!=null ">
+                and createtime &lt;= #{qsrq}
+                -- to_date(#{zzrq},'yyyy-MM-dd HH:mm:ss')
+            </if>
+        </where>
+
+        <!--<if test="pageNum>0">-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--</if>-->
+
     </select>
 
     <!--查询指定行数据-->
@@ -30,7 +52,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="QysswjXxzxTYwCgjhMap">
         select
-          id, cgjhmc, createtime, creater, zt, bz
+        id, cgjhmc, createtime, creater, zt, bz
         from aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjh
         <where>
             <if test="id != null">
@@ -55,9 +77,9 @@
     </select>
 
     <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into aly_kfkjpx_test.qysswj_xxzx_t_yw_cgjh(cgjhmc, createtime, creater, zt, bz)
-        values (#{cgjhmc}, #{createtime}, #{creater}, #{zt}, #{bz})
+    <insert id="insertCgjh">
+        insert into qysswj_xxzx_t_yw_cgjh(cgjhmc, createtime, creater, zt)
+        values (#{cgjhmc}, now(),'admin', '1' )
     </insert>
 
     <!--通过主键修改数据-->
