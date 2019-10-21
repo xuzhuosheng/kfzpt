@@ -15,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2019-09-21 10:03:42
  */
-@Service ("qysswjXxzxTYwLbwhService")
+@Service("qysswjXxzxTYwLbwhService")
 public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     @Resource
     private QysswjXxzxTYwLbwhMapper qysswjXxzxTYwLbwhDao;
@@ -87,5 +87,18 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    @Override
+    public List<QysswjXxzxTYwLbwh> getLbwhListAuto() {
+
+        List<QysswjXxzxTYwLbwh> ywLbwhList = new ArrayList<>();
+        try {
+            ywLbwhList = qysswjXxzxTYwLbwhDao.queryLbwhListAuto();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ywLbwhList;
+
     }
 }

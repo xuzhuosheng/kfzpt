@@ -107,9 +107,24 @@
         where id = #{id}
     </update>
 
-    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
-    <!--<delete id="deleteById">-->
-    <!--delete from qysw.qysswj_xxzx_t_yw_lbwh where id = #{id}-->
-    <!--</delete>-->
+
+    <select id="queryLbwhListAuto" resultMap="QysswjXxzxTYwLbwhMap">
+        select
+        lx.id lxid,lx.lxmc lxmc,pp.id ppid,pp.ppmc ppmc,xh.id xhid,xh.xhmc xhmc,
+        lb.id , lb.lbmc, lb.ysdj, lb.kcl,
+        lb.createtime,
+        lb.zt, lb.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh on pp.id=xh.ppid
+        left join qysswj_xxzx_t_yw_lbwh lb on xh.id=lb.xhid
+        <where>
+            lx.zt='1'
+            and pp.zt='1'
+            and xh.zt='1'
+            and lb.zt='1'
+            and lb.kcl &lt;= lb.fz
+        </where>
+    </select>
 
 </mapper>

@@ -19,6 +19,7 @@ public class QysswjXxzxTYwLbwh implements Serializable {
 
     private Integer kcl;
 
+    private Integer fz;
     private String xhid;
 
     private String xhmc;
@@ -140,4 +141,11 @@ public class QysswjXxzxTYwLbwh implements Serializable {
         this.bz = bz;
     }
 
+    public Integer getFz() {
+        return fz;
+    }
+
+    public void setFz(Integer fz) {
+        this.fz = fz;
+    }
 }

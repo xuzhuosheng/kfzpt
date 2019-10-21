@@ -23,4 +23,6 @@ public interface QysswjXxzxTYwLbwhService {
     QysswjXxzxTYwLbwh getYwLbwhById(String id);
 
     boolean editYwLbwh(String id, String xhid, String xhmc, String kcl, double ysdj);
+
+    List<QysswjXxzxTYwLbwh> getLbwhListAuto();
 }

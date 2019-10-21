@@ -29,4 +29,6 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("kcl") String kcl, @Param ("ysdj") double ysdj);
+
+    List<QysswjXxzxTYwLbwh> queryLbwhListAuto();
 }

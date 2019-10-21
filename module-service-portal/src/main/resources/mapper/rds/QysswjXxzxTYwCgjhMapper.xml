@@ -6,7 +6,7 @@
                id="QysswjXxzxTYwCgjhMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="cgjhmc" column="cgjhmc" jdbcType="VARCHAR"/>
-        <result property="createtime" column="createtime" jdbcType="VARCHAR"  />
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP"  />
         <result property="creater" column="creater" jdbcType="VARCHAR"/>
         <result property="zt" column="zt" jdbcType="VARCHAR"/>
         <result property="bz" column="bz" jdbcType="VARCHAR"/>
@@ -15,7 +15,7 @@
 
     <!--String cgjhmc, Date qsrq, Date zzrq, int pageNum, int pageSize-->
     <!--查询单个-->
-    <select id="queryYwLbwh" resultMap="QysswjXxzxTYwCgjhMap" parameterType="String">
+    <select id="queryYwLbwh" resultMap="QysswjXxzxTYwCgjhMap"  >
         select
         id, cgjhmc, createtime, creater, zt, bz
         from qysswj_xxzx_t_yw_cgjh
@@ -24,14 +24,12 @@
             <if test="cgjhmc!=null and cgjhmc!=''">
                 and cgjhmc like '%${cgjhmc}%'
             </if>
-            <if test="qsrq!=null ">
+            <if test="qsrq!=null and qsrq!='' ">
                 and createtime &gt;= #{qsrq}
-                /* to_date(#{qsrq},'yyyy-MM-dd HH:mm:ss')*/
 
             </if>
             <if test="zzrq!=null ">
                 and createtime &lt;= #{qsrq}
-                -- to_date(#{zzrq},'yyyy-MM-dd HH:mm:ss')
             </if>
         </where>
 
