@@ -54,6 +54,9 @@
             <if test="xhid!=null and xhid!='' ">
                 and xh.id=#{xhid}
             </if>
+            <if test="kcl>=0">
+                and lb.kcl=#{kcl}
+            </if>
             <if test="lbmc!=null and lbmc!='' ">
                 and lb.lbmc like '%${lbmc}%'
             </if>

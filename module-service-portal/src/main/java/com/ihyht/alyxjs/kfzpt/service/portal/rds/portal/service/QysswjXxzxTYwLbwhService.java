@@ -13,11 +13,11 @@ import java.util.List;
 public interface QysswjXxzxTYwLbwhService {
 
 
-    List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, int pageNum, int pageSize);
+    List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, int kcl, int pageNum, int pageSize);
 
-    void addYwLbwh(String xhid, String xhmc, String lbmc, int fz, float ysdj, int kcl);
+    boolean addYwLbwh(String xhid, String xhmc, String lbmc, int fz, float ysdj, int kcl);
 
-    void editYwLbwhZt(List<String> idList);
+    boolean editYwLbwhZt(List<String> idList);
 
     QysswjXxzxTYwLbwh getYwLbwhById(String id);
 }

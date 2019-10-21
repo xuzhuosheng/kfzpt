@@ -2,6 +2,8 @@ package com.ihyht.alyxjs.kfzpt.portal.console;
 
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLbwh;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwLbwhService;
+import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
+import com.ihyht.commons.lang.model.RestResponse;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -22,7 +24,7 @@ import java.util.List;
 @PropertySource ("classpath:application.properties")
 @RequestMapping ("/Lbwh")
 @RestController
-public class QysswjXxzxTYwLbwhController  {
+public class QysswjXxzxTYwLbwhController {
     /**
      * 服务对象
      */
@@ -37,27 +39,29 @@ public class QysswjXxzxTYwLbwhController  {
 
     @ApiOperation (value = "获取所有在用类别，并且分页.页面显示数据", notes = "1.返回List。2.页码大于0,整数,分页")
     @ApiImplicitParams ({
-            @ApiImplicitParam (name = "lxid", value = "类型id", paramType = "query", required = false),
-            @ApiImplicitParam (name = "ppid", value = "品牌id", paramType = "query", required = false),
-            @ApiImplicitParam (name = "xhid", value = "型号id", paramType = "query", required = false),
+            @ApiImplicitParam (name = "lxid", value = "类型id,下拉获取", paramType = "query", required = false),
+            @ApiImplicitParam (name = "ppid", value = "品牌id，下拉获取", paramType = "query", required = false),
+            @ApiImplicitParam (name = "xhid", value = "型号id，下拉获取", paramType = "query", required = false),
             @ApiImplicitParam (name = "lbmc", value = "类别名称", paramType = "query", required = false),
+            @ApiImplicitParam (name = "kcl", value = "数量", paramType = "query", required = false),
             @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
     })
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getYwLbwhList", method = RequestMethod.POST)
     @ResponseBody
-    public List<QysswjXxzxTYwLbwh> getYwLbwhList(@RequestParam (required = false) String lxid,
-                                                 @RequestParam (required = false) String ppid,
-                                                 @RequestParam (required = false) String xhid,
-                                                 @RequestParam (required = false) String lbmc,
-                                                 @RequestParam (required = true) int pageNum) {
-        ywLbwhList = new ArrayList<>();
-        try {
-            ywLbwhList = qysswjXxzxTYwLbwhService.getYwLbwhList(lxid, ppid, xhid, lbmc, pageNum, pageSize);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public RestResponse getYwLbwhList(@RequestParam (required = false) String lxid,
+                                      @RequestParam (required = false) String ppid,
+                                      @RequestParam (required = false) String xhid,
+                                      @RequestParam (required = false) String lbmc,
+                                      @RequestParam (required = false) int kcl,
+                                      @RequestParam (required = true) int pageNum) {
+        List<QysswjXxzxTYwLbwh> ywLbwhList = qysswjXxzxTYwLbwhService.getYwLbwhList(lxid, ppid, xhid, lbmc, kcl,
+                pageNum, pageSize);
+        if (ywLbwhList != null) {
+            return RestResponse.success(ywLbwhList);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return ywLbwhList;
     }
 
 
@@ -74,20 +78,19 @@ public class QysswjXxzxTYwLbwhController  {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/addYwLbwh", method = RequestMethod.POST)
     @ResponseBody
-    public String addYwLbwh(@RequestParam (required = true) String xhid,
-                            @RequestParam (required = true) String xhmc,
-                            @RequestParam (required = true) String lbmc,
-                            @RequestParam (required = true) int fz,
-                            @RequestParam (required = true) float ysdj,
-                            @RequestParam (required = true) int kcl) {
-        String resultStr = "success";
-        try {
-            qysswjXxzxTYwLbwhService.addYwLbwh(xhid, xhmc, lbmc, fz, ysdj, kcl);
-        } catch (Exception e) {
-            resultStr = "error";
-            e.printStackTrace();
+    public RestResponse addYwLbwh(@RequestParam (required = true) String xhid,
+                                  @RequestParam (required = true) String xhmc,
+                                  @RequestParam (required = true) String lbmc,
+                                  @RequestParam (required = true) int fz,
+                                  @RequestParam (required = true) float ysdj,
+                                  @RequestParam (required = true) int kcl) {
+        boolean flag = qysswjXxzxTYwLbwhService.addYwLbwh(xhid, xhmc, lbmc, fz, ysdj, kcl);
+
+        if (flag) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return resultStr;
     }
 
 
@@ -101,17 +104,22 @@ public class QysswjXxzxTYwLbwhController  {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/editYwLbwhZt", method = RequestMethod.POST)
     @ResponseBody
-    public String editYwLbwhZt(@RequestParam (required = true) String ids) {
-        String resultStr = "success";
+    public RestResponse editYwLbwhZt(@RequestParam (required = true) String ids) {
+
+        List<String> idList = new ArrayList<>();
         try {
             String idArr[] = ids.split(",");
-            List<String> idList = Arrays.asList(idArr);
-            qysswjXxzxTYwLbwhService.editYwLbwhZt(idList);
+            idList = Arrays.asList(idArr);
         } catch (Exception e) {
-            resultStr = "error";
             e.printStackTrace();
         }
-        return resultStr;
+
+        boolean flag = qysswjXxzxTYwLbwhService.editYwLbwhZt(idList);
+        if (flag) {
+            return RestResponse.success(flag);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+        }
     }
 
 
@@ -122,16 +130,28 @@ public class QysswjXxzxTYwLbwhController  {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
     @ResponseBody
-    public QysswjXxzxTYwLbwh getYwLbwhById(@RequestParam (required = true) String id) {
-        QysswjXxzxTYwLbwh ywLbwh = new QysswjXxzxTYwLbwh();
-        try {
-            ywLbwh = qysswjXxzxTYwLbwhService.getYwLbwhById(id);
+    public RestResponse getYwLbwhById(@RequestParam (required = true) String id) {
+        QysswjXxzxTYwLbwh ywLbwh = qysswjXxzxTYwLbwhService.getYwLbwhById(id);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (ywLbwh != null) {
+            return RestResponse.success(ywLbwh);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
-        return ywLbwh;
     }
+
+//    @ApiOperation (value = "修改后保存", notes = "修改后保存")
+//    @ApiImplicitParams ({
+//            @ApiImplicitParam (name = "id", value = "id", paramType = "query", required = true)
+//    })
+//    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+//    @RequestMapping (value = "/getLxwhById", method = RequestMethod.POST)
+//    @ResponseBody
+//    public RestResponse editYwLbwh(@RequestParam (required = true)String id,
+//                                   @RequestParam()String
+//                                   ) {
+//
+//    }
 
 
 }

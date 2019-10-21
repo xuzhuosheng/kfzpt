@@ -24,29 +24,55 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     private List<QysswjXxzxTYwLbwh> ywLbwhList;
 
     @Override
-    public List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, int pageNum,
+    public List<QysswjXxzxTYwLbwh> getYwLbwhList(String lxid, String ppid, String xhid, String lbmc, int kcl,
+                                                 int pageNum,
                                                  int pageSize) {
-        ywLbwhList = new ArrayList<>();
-        ywLbwhList = qysswjXxzxTYwLbwhDao.selectAllYwLbwhList(lxid, ppid, xhid, lbmc, pageNum,
-                pageSize);
+        try {
+            ywLbwhList = new ArrayList<>();
+            ywLbwhList = qysswjXxzxTYwLbwhDao.selectAllYwLbwhList(lxid, ppid, xhid, lbmc, kcl, pageNum,
+                    pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ywLbwhList;
     }
 
     @Override
-    public void addYwLbwh(String xhid, String xhmc, String lbmc, int fz, float ysdj, int kcl) {
-        qysswjXxzxTYwLbwhDao.insertYwLbwh(xhid, xhmc, lbmc, fz, ysdj, kcl);
+    public boolean addYwLbwh(String xhid, String xhmc, String lbmc, int fz, float ysdj, int kcl) {
+
+        boolean flag = true;
+        try {
+            qysswjXxzxTYwLbwhDao.insertYwLbwh(xhid, xhmc, lbmc, fz, ysdj, kcl);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+        return flag;
     }
 
     @Override
-    public void editYwLbwhZt(List<String> idList) {
-        qysswjXxzxTYwLbwhDao.updateYwLbwhZt(idList);
+    public boolean editYwLbwhZt(List<String> idList) {
 
+        boolean flag = true;
+        try {
+
+            qysswjXxzxTYwLbwhDao.updateYwLbwhZt(idList);
+        } catch (Exception e) {
+            flag = false;
+            e.printStackTrace();
+        }
+
+        return flag;
     }
 
     @Override
     public QysswjXxzxTYwLbwh getYwLbwhById(String id) {
         QysswjXxzxTYwLbwh ywLbwh = new QysswjXxzxTYwLbwh();
-        qysswjXxzxTYwLbwhDao.selectYwLbwhById(id);
+        try {
+            ywLbwh = qysswjXxzxTYwLbwhDao.selectYwLbwhById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return ywLbwh;
     }
 
