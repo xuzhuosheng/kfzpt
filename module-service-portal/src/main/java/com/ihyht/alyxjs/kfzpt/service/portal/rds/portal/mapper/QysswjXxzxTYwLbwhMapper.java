@@ -16,7 +16,8 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     List<QysswjXxzxTYwLbwh> selectAllYwLbwhList(@Param ("lxid") String lxid, @Param ("ppid") String ppid,
                                                 @Param ("xhid") String xhid, @Param ("lbmc") String lbmc,
-                                                @Param ("pageNum") int pageNum, @Param ("pageSize") int pageSize);
+                                                @Param ("kcl") int kcl, @Param ("pageNum") int pageNum, @Param (
+            "pageSize") int pageSize);
 
     void insertYwLbwh(@Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
                       @Param ("lbmc") String lbmc, @Param ("fz") int fz,
@@ -24,5 +25,8 @@ public interface QysswjXxzxTYwLbwhMapper {
 
     void updateYwLbwhZt(@Param ("idList") List<String> idList);
 
-    void selectYwLbwhById(@Param ("id") String id);
+    QysswjXxzxTYwLbwh selectYwLbwhById(@Param ("id") String id);
+
+    void updateYwLbwh(@Param ("id") String id, @Param ("xhid") String xhid, @Param ("xhmc") String xhmc,
+                      @Param ("kcl") String kcl, @Param ("ysdj") double ysdj);
 }
