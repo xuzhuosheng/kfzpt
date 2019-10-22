@@ -24,12 +24,11 @@ public class QysswjXxzxTYwLxwhServiceImpl implements QysswjXxzxTYwLxwhService {
     private List<QysswjXxzxTYwLxwh> lxwhList;
 
     @Override
-    public List<QysswjXxzxTYwLxwh> getLxwhList(String lxmc , int pageNum, int pageSize) {
-        lxwhList=new ArrayList<>();
+    public List<QysswjXxzxTYwLxwh> getLxwhList(String lxmc, int pageNum, int pageSize) {
+        lxwhList = new ArrayList<>();
         try {
             lxwhList = qysswjXxzxTYwLxwhDao.selectAllLxwh(lxmc, pageNum, pageSize);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return lxwhList;
@@ -92,6 +91,16 @@ public class QysswjXxzxTYwLxwhServiceImpl implements QysswjXxzxTYwLxwhService {
             e.printStackTrace();
         }
         return lxwhList;
+    }
+
+    public int getCount() {
+        int countNum = 0;
+        try {
+            countNum = qysswjXxzxTYwLxwhDao.queryCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countNum;
     }
 
 

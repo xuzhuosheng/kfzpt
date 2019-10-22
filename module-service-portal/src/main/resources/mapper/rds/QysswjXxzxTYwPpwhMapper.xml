@@ -16,51 +16,68 @@
     <!--查询所有记录-->
     <select id="selectAllPpwh" resultMap="QysswjXxzxTYwPpwhMap">
         select
-        id, ppmc, lxid, lxmc, createtime, zt, bz
-        from qysswj_xxzx_t_yw_ppwh
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
         <where>
             1=1
-            and zt='1'
+            and pp.zt='1'
+            and lx.zt='1'
             <if test="lxid!=null and lxid!='' ">
-                and lxid =#{lxid}
+                and pp.lxid =#{lxid}
             </if>
             <if test="ppmc!=null and ppmc!=''">
-                and ppmc like '%${ppmc}%'
+                and pp.ppmc like '%${ppmc}%'
             </if>
         </where>
-        order by createtime desc
+        order by pp.createtime desc
         <!--<if test="pageNum>0">-->
-            <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
         <!--</if>-->
     </select>
 
     <!--查询单个记录-->
     <select id="selectOneById" resultMap="QysswjXxzxTYwPpwhMap">
         select
-        id, ppmc, lxid, lxmc, createtime, zt, bz
-        from qysswj_xxzx_t_yw_ppwh
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
         <where>
             1=1
-            and zt='1'
+            and pp.zt='1'
+            and lx.zt='1'
             <if test="id!=null and id!='' ">
-                and id=#{id}
+                and pp.id=#{id}
             </if>
-
         </where>
+    </select>
 
+
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
+        <where>
+            1=1
+            and pp.zt='1'
+            and lx.zt='1'
+        </where>
     </select>
 
 
     <!--根据类型id获取品牌-->
     <select id="selectAllPpwhByLxid" resultMap="QysswjXxzxTYwPpwhMap">
         select
-        id, ppmc, lxid, lxmc, createtime, zt, bz
-        from qysswj_xxzx_t_yw_ppwh
+        pp.id, pp.ppmc, pp.lxid,pp.lxmc, pp.createtime, pp.zt, pp.bz
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp on pp.lxid=lx.id
         <where>
             1=1
-            and zt='1'
+            and pp.zt='1'
+            and lx.zt='1'
             <if test="lxid!=null and lxid!='' ">
-                and lxid=#{lxid}
+                and pp.lxid=#{lxid}
             </if>
 
         </where>
@@ -69,7 +86,7 @@
 
 
     <!--新增所有列-->
-    <insert id="insertPpwh" useGeneratedKeys="true">
+    <insert id="insertPpwh" >
     insert into  qysswj_xxzx_t_yw_ppwh(ppmc, lxid, lxmc, createtime, zt)
     values (#{ppmc}, #{lxid}, #{lxmc}, now(), '1')
     </insert>
@@ -108,9 +125,6 @@
         </where>
     </update>
 
-    <!--&lt;!&ndash;通过主键删除&ndash;&gt;-->
-    <!--<delete id="deleteById">-->
-    <!--delete from qysw.qysswj_xxzx_t_yw_ppwh where id = #{id}-->
-    <!--</delete>-->
+
 
 </mapper>

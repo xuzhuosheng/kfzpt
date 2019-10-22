@@ -6,7 +6,7 @@
                id="QysswjXxzxTYwLxwhMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="lxmc" column="lxmc" jdbcType="VARCHAR"/>
-        <result property="createtime" column="createtime" jdbcType="OTHER"/>
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP" javaType="DATE"/>
         <result property="zt" column="zt" jdbcType="VARCHAR"/>
         <result property="bz" column="bz" jdbcType="VARCHAR"/>
     </resultMap>
@@ -24,7 +24,7 @@
         </where>
         order by createtime desc
         <!--<if test="pageNum>0">-->
-          <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
+        <!--limit ${(pageNum-1)*pageSize},${pageNum*pageSize}-->
         <!--</if>-->
 
     </select>
@@ -46,6 +46,16 @@
     </select>
 
 
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh
+        <where>
+            1=1
+            and zt='1'
+        </where>
+
+    </select>
     <!--新增所有列-->
     <insert id="insertLxwh" useGeneratedKeys="true">
     insert into  qysswj_xxzx_t_yw_lxwh(lxmc, createtime, zt)
@@ -56,9 +66,7 @@
     <update id="updateLxwh">
         update qysswj_xxzx_t_yw_lxwh
         <set>
-            <if test="lxmc != null and lxmc != ''">
-                lxmc = #{lxmc},
-            </if>
+            lxmc = #{lxmc},
         </set>
         <where>
             id = #{id}

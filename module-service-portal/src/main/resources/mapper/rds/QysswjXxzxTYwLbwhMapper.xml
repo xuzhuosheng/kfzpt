@@ -68,6 +68,17 @@
         </if>
     </select>
 
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lbwh lb
+        <where>
+            lx.zt='1'
+            and lb.zt='1'
+        </where>
+
+    </select>
+
 
     <!--新增所有列-->
     <insert id="insertYwLbwh">

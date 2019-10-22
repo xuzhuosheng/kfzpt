@@ -94,5 +94,16 @@ public class QysswjXxzxTYwPpwhServiceImpl implements QysswjXxzxTYwPpwhService {
         return ppwhList;
     }
 
+    @Override
+    public int getCount() {
+        int countNum = 0;
+        try {
+            countNum = qysswjXxzxTYwPpwhDao.queryCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countNum;
+    }
+
 
 }

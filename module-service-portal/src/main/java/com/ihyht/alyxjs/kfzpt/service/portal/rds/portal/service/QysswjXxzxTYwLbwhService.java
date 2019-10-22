@@ -25,4 +25,6 @@ public interface QysswjXxzxTYwLbwhService {
     boolean editYwLbwh(String id, String xhid, String xhmc, String kcl, double ysdj);
 
     List<QysswjXxzxTYwLbwh> getLbwhListAuto();
+
+    int getCount();
 }

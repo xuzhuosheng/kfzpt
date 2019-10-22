@@ -4,7 +4,6 @@ import com.ihyht.alyxjs.kfzpt.portal.base.AbstractRestController;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model.QysswjXxzxTYwLxwh;
 import com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.service.QysswjXxzxTYwLxwhService;
 import com.ihyht.alyxjs.nbjcpt.common.api.ApiReturnCodeEnum;
-import com.ihyht.alyxjs.nbjcpt.common.api.PageInfo;
 import com.ihyht.commons.lang.model.RestResponse;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,7 +40,7 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     private int pageSize;
 
 
-    @ApiOperation (value = "获取所有在用类型，并且分页.页面显示数据" )
+    @ApiOperation (value = "获取所有在用类型，并且分页.页面显示数据")
     @ApiImplicitParams ({
             @ApiImplicitParam (name = "lxmc", value = "类型名称", paramType = "query", required = false),
             @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
@@ -49,9 +48,9 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
     @RequestMapping (value = "/getLxwhList", method = RequestMethod.POST)
     @ResponseBody
-    public RestResponse getLxwhList(@RequestParam(required = false) String lxmc,
+    public RestResponse getLxwhList(@RequestParam (required = false) String lxmc,
                                     @RequestParam (required = true) int pageNum) {
-        lxwhList=new ArrayList<>();
+        lxwhList = new ArrayList<>();
         lxwhList = qysswjXxzxTYwLxwhService.getLxwhList(lxmc, pageNum, pageSize);
 
         if (lxwhList != null) {
@@ -61,7 +60,6 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
         }
 
     }
-
 
 
     @ApiOperation (value = "根据id获取类型", notes = "返回QysswjXxzxTYwLxwh对象")
@@ -153,13 +151,30 @@ public class QysswjXxzxTYwLxwhController extends AbstractRestController {
     @RequestMapping (value = "/getAllLxwhList", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse getAllLxwhList() {
-        lxwhList=new ArrayList<>();
+        lxwhList = new ArrayList<>();
         lxwhList = qysswjXxzxTYwLxwhService.getAllLxwhList();
         if (lxwhList != null) {
             return RestResponse.success(lxwhList);
         } else {
             return RestResponse.failed(ApiReturnCodeEnum.saveFail);
         }
+    }
+
+
+    @ApiOperation (value = "获取所有在用类型的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount() {
+
+        int countNum = qysswjXxzxTYwLxwhService.getCount();
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
     }
 
 

@@ -1,5 +1,7 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ public class QysswjXxzxTYwCgjh implements Serializable {
 
     private String cgjhmc;
 
+    @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createtime;
 
     private String creater;

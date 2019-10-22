@@ -35,4 +35,5 @@ public interface QysswjXxzxTYwLxwhMapper {
      */
     List<QysswjXxzxTYwLxwh> selectAllZyLxwh();
 
+    int queryCount();
 }

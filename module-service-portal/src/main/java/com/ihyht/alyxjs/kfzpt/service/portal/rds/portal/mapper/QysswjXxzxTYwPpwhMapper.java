@@ -28,5 +28,7 @@ public interface QysswjXxzxTYwPpwhMapper {
 
     List<QysswjXxzxTYwPpwh> selectAllPpwhByLxid(@Param ("lxid") String lxid);
 
+    int queryCount();
+
 //    int insertPpwh(@Param ("ppmc") String ppmc);
 }

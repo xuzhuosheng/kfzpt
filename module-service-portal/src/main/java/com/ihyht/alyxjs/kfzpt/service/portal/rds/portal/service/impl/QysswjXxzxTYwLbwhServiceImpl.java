@@ -15,7 +15,7 @@ import java.util.List;
  * @author makejava
  * @since 2019-09-21 10:03:42
  */
-@Service("qysswjXxzxTYwLbwhService")
+@Service ("qysswjXxzxTYwLbwhService")
 public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
     @Resource
     private QysswjXxzxTYwLbwhMapper qysswjXxzxTYwLbwhDao;
@@ -76,6 +76,17 @@ public class QysswjXxzxTYwLbwhServiceImpl implements QysswjXxzxTYwLbwhService {
         return ywLbwh;
     }
 
+
+    @Override
+    public int getCount() {
+        int countNum = 0;
+        try {
+            countNum = qysswjXxzxTYwLbwhDao.queryCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countNum;
+    }
 
     @Override
     public boolean editYwLbwh(String id, String xhid, String xhmc, String kcl, double ysdj) {

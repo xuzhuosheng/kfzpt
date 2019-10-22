@@ -28,4 +28,6 @@ public interface QysswjXxzxTYwXhwhMapper {
     void updateXhwhZt(@Param ("idList") List<String> idList);
 
     List<QysswjXxzxTYwXhwh> selectXhwhListByPpid(String ppid);
+
+    int queryCount();
 }

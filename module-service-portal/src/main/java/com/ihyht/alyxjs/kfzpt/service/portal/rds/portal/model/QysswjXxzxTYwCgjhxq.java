@@ -25,7 +25,7 @@ public class QysswjXxzxTYwCgjhxq implements Serializable {
 
     private Integer cgsl;
 
-    private Object ysdj;
+    private double ysdj;
 
     private String zt;
 
@@ -88,11 +88,11 @@ public class QysswjXxzxTYwCgjhxq implements Serializable {
         this.cgsl = cgsl;
     }
 
-    public Object getYsdj() {
+    public double getYsdj() {
         return ysdj;
     }
 
-    public void setYsdj(Object ysdj) {
+    public void setYsdj(double ysdj) {
         this.ysdj = ysdj;
     }
 

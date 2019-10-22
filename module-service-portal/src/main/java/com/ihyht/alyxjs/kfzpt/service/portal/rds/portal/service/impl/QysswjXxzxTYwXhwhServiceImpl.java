@@ -92,4 +92,15 @@ public class QysswjXxzxTYwXhwhServiceImpl implements QysswjXxzxTYwXhwhService {
         }
         return xhwhList;
     }
+
+    @Override
+    public int getCount() {
+        int countNum = 0;
+        try {
+            countNum = qysswjXxzxTYwXhwhDao.queryCount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return countNum;
+    }
 }

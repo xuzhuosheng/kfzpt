@@ -71,6 +71,25 @@
     </select>
 
 
+    <select id="queryCount" resultType="int">
+        select
+        count(*)
+        from qysswj_xxzx_t_yw_lxwh lx
+        left join qysswj_xxzx_t_yw_ppwh pp
+        on lx.id=pp.lxid
+        left join qysswj_xxzx_t_yw_xhwh xh
+        on xh.ppid=pp.id
+        <where>
+            1=1
+            and xh.zt='1'
+            and lx.zt='1'
+            and pp.zt='1'
+        </where>
+
+
+    </select>
+
+
     <!--新增所有列-->
     <!--/*keyProperty="id" useGeneratedKeys="true"*/-->
     <insert id="insertXhwh">
@@ -93,7 +112,9 @@
                 xhmc = #{xhmc},
             </if>
         </set>
-        where id = #{id}
+        <where>
+            id = #{id}
+        </where>
     </update>
 
 

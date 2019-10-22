@@ -24,4 +24,6 @@ public interface QysswjXxzxTYwXhwhService {
     boolean editXhwhZt(List<String> idList);
 
     List<QysswjXxzxTYwXhwh> getXhwhListByPpid(String ppid);
+
+    int getCount();
 }

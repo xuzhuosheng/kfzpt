@@ -164,4 +164,19 @@ public class QysswjXxzxTYwLbwhController {
     }
 
 
+    @ApiOperation (value = "获取所有在用类别的数据量 ")
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCount", method = RequestMethod.POST)
+    @ResponseBody
+    public RestResponse getCount() {
+
+        int countNum = qysswjXxzxTYwLbwhService.getCount();
+        if (countNum >= 0) {
+            return RestResponse.success(countNum);
+        } else {
+            return RestResponse.failed(ApiReturnCodeEnum.saveFail);
+
+        }
+
+    }
 }

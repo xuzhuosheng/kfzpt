@@ -31,4 +31,6 @@ public interface QysswjXxzxTYwLbwhMapper {
                       @Param ("kcl") String kcl, @Param ("ysdj") double ysdj);
 
     List<QysswjXxzxTYwLbwh> queryLbwhListAuto();
+
+    int queryCount();
 }

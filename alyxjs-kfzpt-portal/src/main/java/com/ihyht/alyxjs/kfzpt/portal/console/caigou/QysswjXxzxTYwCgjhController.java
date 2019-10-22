@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ import java.util.List;
  * @author makejava
  * @since 2019-10-21 11:47:26
  */
-@Api(value = "采购计划", description = "采购计划")
-@PropertySource("classpath:application.properties")
-@RequestMapping("/Cgjh")
+@Api (value = "采购计划", description = "采购计划")
+@PropertySource ("classpath:application.properties")
+@RequestMapping ("/Cgjh")
 @RestController
 public class QysswjXxzxTYwCgjhController {
     /**
@@ -41,24 +42,24 @@ public class QysswjXxzxTYwCgjhController {
     @Resource
     private QysswjXxzxTYwCgjhxqService qysswjXxzxTYwCgjhxqService;
 
-    @Value("${pageSize}")
+    @Value ("${pageSize}")
     private int pageSize;
 
 
-    @ApiOperation(value = "获取所有采购计划并且分页")
-    @ApiImplicitParams(value = {
-            @ApiImplicitParam(name = "cgjhmc", value = "采购计划名称", paramType = "query", required = false),
-            @ApiImplicitParam(name = "qsrq", value = "起始日期", paramType = "query", required = false),
-            @ApiImplicitParam(name = "zzrq", value = "终止日期", paramType = "query", required = false),
-            @ApiImplicitParam(name = "pageNum", value = "页码", paramType = "query", required = true)
+    @ApiOperation (value = "获取所有采购计划并且分页")
+    @ApiImplicitParams (value = {
+            @ApiImplicitParam (name = "cgjhmc", value = "采购计划名称", paramType = "query", required = false),
+            @ApiImplicitParam (name = "qsrq", value = "起始日期", paramType = "query", required = false),
+            @ApiImplicitParam (name = "zzrq", value = "终止日期", paramType = "query", required = false),
+            @ApiImplicitParam (name = "pageNum", value = "页码", paramType = "query", required = true)
     })
-    @ApiResponse(code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping(value = "/getCgjhList", method = RequestMethod.POST)
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/getCgjhList", method = RequestMethod.POST)
     @ResponseBody
-    public RestResponse getCgjhList(@RequestParam(required = false) String cgjhmc,
-                                    @RequestParam(required = false) String qsrq,
-                                    @RequestParam(required = false) String zzrq,
-                                    @RequestParam(required = true) int pageNum
+    public RestResponse getCgjhList(@RequestParam (required = false) String cgjhmc,
+                                    @RequestParam (required = false) String qsrq,
+                                    @RequestParam (required = false) String zzrq,
+                                    @RequestParam (required = true) int pageNum
     ) {
         System.out.println(qsrq);
         List<QysswjXxzxTYwCgjh> cgjhList = qysswjXxzxTYwCgjhService.getYwLbwhList(cgjhmc, qsrq, zzrq, pageNum,
@@ -71,14 +72,14 @@ public class QysswjXxzxTYwCgjhController {
 
     }
 
-    @ApiOperation(value = "新增采购计划")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "cgjhmc", value = "采购计划名称", paramType = "query", required = false)
+    @ApiOperation (value = "新增采购计划")
+    @ApiImplicitParams ({
+            @ApiImplicitParam (name = "cgjhmc", value = "采购计划名称", paramType = "query", required = false)
     })
-    @ApiResponse(code = 400, message = "参数没有填好", response = String.class)
-    @RequestMapping(value = "/addCgjh", method = RequestMethod.POST)
+    @ApiResponse (code = 400, message = "参数没有填好", response = String.class)
+    @RequestMapping (value = "/addCgjh", method = RequestMethod.POST)
     @ResponseBody
-    public RestResponse addCgjh(@RequestParam(required = true) String cgjhmc) {
+    public RestResponse addCgjh(@RequestParam (required = true) String cgjhmc) {
 
         boolean flag = qysswjXxzxTYwCgjhService.addCgjh(cgjhmc);
 
@@ -90,8 +91,8 @@ public class QysswjXxzxTYwCgjhController {
 
     }
 
-    @ApiOperation(value = "智能生成采购计划", notes = "获取类别里的数据")
-    @RequestMapping(value = "/createCgjh", method = RequestMethod.POST)
+    @ApiOperation (value = "智能生成采购计划", notes = "获取类别里的数据")
+    @RequestMapping (value = "/createCgjh", method = RequestMethod.POST)
     @ResponseBody
     public RestResponse createCgjh() {
 
@@ -105,10 +106,10 @@ public class QysswjXxzxTYwCgjhController {
     }
 
 
-    @ApiOperation(value = "导出Excel", notes = "导出Excel")
-    @RequestMapping(value = "/expExcel", method = RequestMethod.POST)
+    @ApiOperation (value = "导出Excel", notes = "导出Excel")
+    @RequestMapping (value = "/expExcel", method = RequestMethod.GET)
     @ResponseBody
-    public void expExcel(@RequestParam(required = false) String cgjhid, HttpServletResponse response) {
+    public void expExcel(@RequestParam (required = false) String cgjhid, HttpServletResponse response) throws IOException {
 
 //        QysswjXxzxTYwCgjh qysswjXxzxTYwCgjh = qysswjXxzxTYwCgjhService.getCgjhById(cgjhid);
 //        List<QysswjXxzxTYwCgjhxq> cgjhxqList = new ArrayList<>();
@@ -120,7 +121,7 @@ public class QysswjXxzxTYwCgjhController {
 //        if (qysswjXxzxTYwCgjh != null && cgjhxqList != null) {
 //        }
 
-        ExcelUtil.exportExcel("", null, null,response);
+        ExcelUtil.exportExcel("", null, null, response);
 
     }
 

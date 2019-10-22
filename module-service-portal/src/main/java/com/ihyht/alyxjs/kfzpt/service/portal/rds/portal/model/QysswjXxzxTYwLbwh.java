@@ -1,6 +1,9 @@
 package com.ihyht.alyxjs.kfzpt.service.portal.rds.portal.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (QysswjXxzxTYwLbwh)实体类
@@ -24,7 +27,8 @@ public class QysswjXxzxTYwLbwh implements Serializable {
 
     private String xhmc;
     //创建时间
-    private Object createtime;
+    @JsonFormat (pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createtime;
     //状态
     private String zt;
     //备注
@@ -117,11 +121,11 @@ public class QysswjXxzxTYwLbwh implements Serializable {
         this.xhmc = xhmc;
     }
 
-    public Object getCreatetime() {
+    public Date getCreatetime() {
         return createtime;
     }
 
-    public void setCreatetime(Object createtime) {
+    public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
 
